@@ -64,7 +64,7 @@ function addCommaLast(line, index, file) {
 }
 
 function rmCommaFirst(line, index, file) {
-    return hasCommaFirst(line) ? line.replace(/,\s+/gi, '')
+    return hasCommaFirst(line) ? line.replace(/,\s+/i, '')
                                : line
 }
 

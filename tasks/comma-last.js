@@ -59,8 +59,19 @@ function toCommaLast(line, index, file) {
 
 function addCommaLast(line, index, file) {
     return !isEmptyLine(line) && hasCommaFirst(next(file, index)) ?
-        line + ',' :
+        insertBeforeComments(line, ',') :
         line
+}
+
+function insertBeforeComments(line, char) {
+    let commentStart = line.indexOf(`\/\/`)
+    const COMMA = ','
+
+    return commentStart === -1 ? line + COMMA :
+    line.split('').reduce((str, char, i) =>  {
+        let nextChar = (i+1) === commentStart ? COMMA : ''
+        return str.concat(char).concat(nextChar)
+    }, '')
 }
 
 function rmCommaFirst(line) {

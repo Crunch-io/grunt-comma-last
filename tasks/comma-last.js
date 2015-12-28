@@ -54,7 +54,7 @@ function toFile(lines) {
 }
 
 function toCommaLast(line, index, file) {
-    return rmCommaFirst(addCommaLast(line, index, file))
+    return addCommaLast(rmCommaFirst(line), index, file)
 }
 
 function addCommaLast(line, index, file) {
@@ -63,14 +63,8 @@ function addCommaLast(line, index, file) {
         line
 }
 
-function rmCommaFirst(line, index, file) {
-    if(hasCommaFirst(line)) {
-        console.log(line)
-        console.log(line.replace(/,\s+/gi, ''))
-    }
-
-
-    return hasCommaFirst(line) ? line.replace(/,\s*/gi, '')
+function rmCommaFirst(line) {
+    return hasCommaFirst(line) ? line.replace(/,\s*/i, '')
                                : line
 }
 
